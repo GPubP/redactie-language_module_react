@@ -1,10 +1,9 @@
-import React from 'react';
-import Core from "@redactie/redactie-core";
+/**
+ * @module Exports
+ */
 
-Core.routes.register({
-	path: '/demo',
-	component: () => <>Hello world</>,
-	navigation: {
-		label: 'Demo'
-	}
-});
+import './lib/api';
+import './lib/routes';
+
+// Export types needed for other modules here
+export * from './lib/boilerplate.types';
