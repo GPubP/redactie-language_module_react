@@ -30,7 +30,7 @@ class TranslationsConnector {
 
 	public useModuleTranslation(): [TranslateFunc] {
 		return this.modules?.useTranslation
-			? this.modules.useTranslation('boilerpalte', 'nl_BE') // TODO: change module name here
+			? this.modules.useTranslation('boilerplate', 'nl_BE') // TODO: change module name here
 			: [() => 'TRANSLATIONS MODULE ERROR'];
 	}
 }
