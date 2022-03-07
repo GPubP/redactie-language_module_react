@@ -23,7 +23,7 @@ Core.routes.register({
 	redirect: MODULE_PATHS.overview,
 	navigation: {
 		label: 'Talen',
-		order: 0,
+		order: 5,
 	},
 	routes: [
 		{
