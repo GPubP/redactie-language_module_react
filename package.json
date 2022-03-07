@@ -1,11 +1,11 @@
 {
-  "name": "@redactie/boilerplate-module",
+  "name": "@redactie/language-module",
   "version": "0.0.0-1",
-  "description": "redactie boilerplate module",
-  "main": "dist/redactie-boilerplate-module.umd.js",
-  "module": "dist/redactie-boilerplate-module.umd.js",
+  "description": "redactie language module",
+  "main": "dist/redactie-language-module.umd.js",
+  "module": "dist/redactie-language-module.umd.js",
   "types": "dist/index.d.ts",
-  "jsnext:main": "dist/redactie-boilerplate-module.umd.js",
+  "jsnext:main": "dist/redactie-language-module.umd.js",
   "scripts": {
     "prepublish": "npm run test && npm run build && npm run docs",
     "build:types": "tsc --emitDeclarationOnly",
@@ -22,12 +22,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://ex02131@bitbucket.antwerpen.be/scm/wcm/redactie-boilerplate_module.git"
+    "url": "https://ex02131@bitbucket.antwerpen.be/scm/wcm/redactie-language_module.git"
   },
   "keywords": [
     "Redactie",
     "React",
-    "Boilerplate",
+    "Language",
     "Module"
   ],
   "publishConfig": {
