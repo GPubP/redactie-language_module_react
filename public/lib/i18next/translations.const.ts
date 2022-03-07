@@ -6,7 +6,7 @@ const tKey = translationsConnector.core.tKey;
 
 // TODO: Place all your copy here
 const MODULE_TRANSLATIONS = Object.freeze<I18NextTranslations>({
-	HELLOWORLD_TITLE: tKey('LANGUAGE_TITLE', 'Talen'),
+	LANGUAGE_TITLE: tKey('LANGUAGE_TITLE', 'Talen'),
 });
 
 export { MODULE_TRANSLATIONS };
