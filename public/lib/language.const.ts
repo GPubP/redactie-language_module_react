@@ -8,5 +8,4 @@ export const MODULE_PATHS = {
 
 export const ALERT_CONTAINER_IDS = {
 	overview: 'overview',
-	settings: 'settings',
 };
