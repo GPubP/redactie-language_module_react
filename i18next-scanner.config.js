@@ -14,9 +14,9 @@ module.exports = {
 			list: ['tKey'],
 			extensions: ['.ts', '.tsx'],
 		},
-		lngs: ['nl-BE'],
+		lngs: ['nl_BE'],
 		ns: ['language'],
-		defaultLng: 'nl-BE',
+		defaultLng: 'nl_BE',
 		defaultNs: 'language',
 		defaultValue: '__STRING_NOT_TRANSLATED__',
 		resource: {
