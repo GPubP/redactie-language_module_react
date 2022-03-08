@@ -21,14 +21,4 @@ export const getAlertMessages = (data: LanguageSchema): Record<string, any> => (
 			message: `Het bewaren van de taal "${data.name}" is mislukt`,
 		},
 	},
-	delete: {
-		success: {
-			title: 'Verwijderd',
-			message: `De taal "${data.name}" is verwijderd`,
-		},
-		error: {
-			title: 'Verwijderen mislukt',
-			message: `Het verwijderen van de taal "${data.name}" is mislukt`,
-		},
-	},
 });

@@ -1,8 +1,4 @@
-import { EmbeddedResponse, SearchParams } from '@redactie/utils';
-
-export interface LanguagesSearchParams extends Omit<SearchParams, 'search'> {
-	search?: string[];
-}
+import { EmbeddedResponse } from '@redactie/utils';
 
 export type LanguagesSchema = EmbeddedResponse<LanguageSchema>;
 

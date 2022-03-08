@@ -1,4 +1,4 @@
-import { BaseEntityState, Page } from '@redactie/utils';
+import { BaseEntityState } from '@redactie/utils';
 
 import { LanguageSchema } from '../../services/languages';
 
@@ -8,7 +8,4 @@ export interface InternalState {
 
 export type LanguageModel = LanguageSchema;
 
-export interface LanguagesState extends BaseEntityState<LanguageModel, string> {
-	language?: LanguageModel;
-	languageDraft?: LanguageModel;
-}
+export type LanguagesState = BaseEntityState<LanguageModel, string>;
