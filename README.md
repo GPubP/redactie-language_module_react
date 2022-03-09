@@ -1,15 +1,11 @@
-# Redactie boilerplate module (React)
+# Redactie language module (React)
 
 ## How to start?
-
-### Init repository
-
-Copy this repository and replace references to "redactie-boilerplate" in package.json
 
 ### Install all dependencies
 
 ```
-npm install && cd demo && npm install
+npm install
 ```
 
 ### Build the library
@@ -20,12 +16,6 @@ npm run build
 // or
 npm run build:w
 // To watch the file
-```
-
-### Start the demo app
-
-```
-cd demo && npm run start
 ```
 
 ## Deploy

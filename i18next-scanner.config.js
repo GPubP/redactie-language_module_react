@@ -14,10 +14,10 @@ module.exports = {
 			list: ['tKey'],
 			extensions: ['.ts', '.tsx'],
 		},
-		lngs: ['nl-BE'],
-		ns: ['boilerplate'], // TODO: change ns to correct module name
-		defaultLng: 'nl-BE',
-		defaultNs: 'boilerplate', // TODO: change ns to correct module name
+		lngs: ['nl_BE'],
+		ns: ['language'],
+		defaultLng: 'nl_BE',
+		defaultNs: 'language',
 		defaultValue: '__STRING_NOT_TRANSLATED__',
 		resource: {
 			loadPath: 'public/assets/i18n/template.json',
