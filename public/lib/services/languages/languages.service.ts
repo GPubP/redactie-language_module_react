@@ -8,7 +8,7 @@ export class LanguagesApiService {
 	): Promise<LanguagesSchema | null> {
 		try {
 			const response: LanguagesSchema = await apiService
-				.get('v1/languages', {
+				.get('languages', {
 					searchParams: {
 						active,
 					},
@@ -29,7 +29,7 @@ export class LanguagesApiService {
 	public async updateLanguage(language: LanguageSchema): Promise<LanguageSchema | null> {
 		try {
 			const response: LanguageSchema = await apiService
-				.put(`v1/languages/${language.uuid}`, {
+				.put(`languages/${language.uuid}`, {
 					json: language,
 				})
 				.json();
@@ -44,7 +44,7 @@ export class LanguagesApiService {
 	public async createLanguage(language: LanguageSchema): Promise<LanguageSchema | null> {
 		try {
 			const response: LanguageSchema = await apiService
-				.post(`v1/languages`, {
+				.post(`languages`, {
 					json: language,
 				})
 				.json();
