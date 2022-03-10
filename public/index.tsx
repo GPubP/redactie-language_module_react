@@ -33,3 +33,5 @@ Core.routes.register({
 		},
 	],
 });
+
+export * from './lib/api/api.types';
