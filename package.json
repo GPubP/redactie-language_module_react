@@ -46,7 +46,7 @@
     "@redactie/module-webpack-plugin": "2.0.0",
     "@redactie/redactie-core": "^2.0.0",
     "@redactie/translations-module": "^1.1.0",
-    "@redactie/utils": "^2.1.0",
+    "@redactie/utils": "^2.2.3",
     "@testing-library/jest-dom": "5.0.2",
     "@testing-library/react": "9.4.0",
     "@types/jest": "24.9.1",

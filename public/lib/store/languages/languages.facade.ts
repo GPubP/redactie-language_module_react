@@ -29,7 +29,7 @@ export class LanguagesFacade extends BaseEntityFacade<
 					throw new Error('Getting languages failed!');
 				}
 
-				this.store.set(response._embedded);
+				this.store.set(response._embedded.languages);
 				this.store.update({
 					isFetching: false,
 				});

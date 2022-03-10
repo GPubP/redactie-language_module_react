@@ -15,7 +15,7 @@ export class LanguagesApiService {
 				})
 				.json();
 
-			if (!response._embedded) {
+			if (!response._embedded.languages) {
 				throw new Error('Failed to get languages');
 			}
 

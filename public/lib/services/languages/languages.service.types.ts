@@ -1,6 +1,6 @@
-import { EmbeddedResponse } from '@redactie/utils';
+import { EmbeddedResourceResponse } from '@redactie/utils';
 
-export type LanguagesSchema = EmbeddedResponse<LanguageSchema>;
+export type LanguagesSchema = EmbeddedResourceResponse<'languages', LanguageSchema>;
 
 export interface LanguageSchema {
 	uuid?: string;
