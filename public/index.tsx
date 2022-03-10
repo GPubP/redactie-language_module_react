@@ -2,6 +2,7 @@ import Core from '@redactie/redactie-core';
 import { RenderChildRoutes, TenantContext } from '@redactie/utils';
 import React, { FC, useMemo } from 'react';
 
+import { registerLanguagesModule } from './lib/api';
 import { MODULE_PATHS } from './lib/language.const';
 import { LanguagesModuleRouteProps } from './lib/language.types';
 import { LanguagesOverview } from './lib/views';
@@ -33,5 +34,7 @@ Core.routes.register({
 		},
 	],
 });
+
+registerLanguagesModule();
 
 export * from './lib/api/api.types';
