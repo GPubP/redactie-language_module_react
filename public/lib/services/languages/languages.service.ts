@@ -3,9 +3,17 @@ import { apiService } from '../api';
 import { LanguageSchema, LanguagesSchema } from './languages.service.types';
 
 export class LanguagesApiService {
-	public async getLanguages(): Promise<LanguagesSchema | null> {
+	public async getLanguages(
+		{ active }: { active: boolean } = { active: false }
+	): Promise<LanguagesSchema | null> {
 		try {
-			const response: LanguagesSchema = await apiService.get('languages').json();
+			const response: LanguagesSchema = await apiService
+				.get('v1/languages', {
+					searchParams: {
+						active,
+					},
+				})
+				.json();
 
 			if (!response._embedded) {
 				throw new Error('Failed to get languages');
@@ -21,7 +29,7 @@ export class LanguagesApiService {
 	public async updateLanguage(language: LanguageSchema): Promise<LanguageSchema | null> {
 		try {
 			const response: LanguageSchema = await apiService
-				.put(`languages/${language.uuid}`, {
+				.put(`v1/languages/${language.uuid}`, {
 					json: language,
 				})
 				.json();
@@ -36,7 +44,7 @@ export class LanguagesApiService {
 	public async createLanguage(language: LanguageSchema): Promise<LanguageSchema | null> {
 		try {
 			const response: LanguageSchema = await apiService
-				.post(`languages`, {
+				.post(`v1/languages`, {
 					json: language,
 				})
 				.json();
