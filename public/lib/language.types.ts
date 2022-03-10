@@ -11,7 +11,7 @@ export interface LanguagesModuleRouteProps extends RouteConfigComponentProps {
 
 export interface LanguagesModuleAPI {
 	store: {
-		sites: {
+		languages: {
 			service: LanguagesApiService;
 			facade: Pick<LanguagesFacade, 'getLanguages'>;
 		};
