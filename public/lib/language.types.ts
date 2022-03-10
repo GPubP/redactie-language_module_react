@@ -10,7 +10,6 @@ export interface LanguagesModuleRouteProps extends RouteConfigComponentProps {
 }
 
 export interface LanguagesModuleAPI {
-	// routes: Routes;
 	store: {
 		sites: {
 			service: LanguagesApiService;
