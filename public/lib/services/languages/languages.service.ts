@@ -3,11 +3,19 @@ import { apiService } from '../api';
 import { LanguageSchema, LanguagesSchema } from './languages.service.types';
 
 export class LanguagesApiService {
-	public async getLanguages(): Promise<LanguagesSchema | null> {
+	public async getLanguages(
+		{ active }: { active: boolean } = { active: false }
+	): Promise<LanguagesSchema | null> {
 		try {
-			const response: LanguagesSchema = await apiService.get('languages').json();
+			const response: LanguagesSchema = await apiService
+				.get('languages', {
+					searchParams: {
+						active,
+					},
+				})
+				.json();
 
-			if (!response._embedded) {
+			if (!response._embedded.languages) {
 				throw new Error('Failed to get languages');
 			}
 
