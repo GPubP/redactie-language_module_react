@@ -13,7 +13,7 @@ export class LanguagesFacade extends BaseEntityFacade<
 > {
 	public readonly languages$ = this.query.languages$;
 
-	public getLanguages(): void {
+	public getLanguages(props: { active: boolean } = { active: false }): void {
 		const { isFetching } = this.query.getValue();
 
 		if (isFetching) {
@@ -23,13 +23,13 @@ export class LanguagesFacade extends BaseEntityFacade<
 		this.store.setIsFetching(true);
 
 		this.service
-			.getLanguages()
+			.getLanguages(props)
 			.then(response => {
 				if (!response) {
 					throw new Error('Getting languages failed!');
 				}
 
-				this.store.set(response._embedded);
+				this.store.set(response._embedded.languages);
 				this.store.update({
 					isFetching: false,
 				});

@@ -1,6 +1,6 @@
 {
   "name": "@redactie/language-module",
-  "version": "0.0.0-1",
+  "version": "0.0.0-3",
   "description": "redactie language module",
   "main": "dist/redactie-language-module.umd.js",
   "module": "dist/redactie-language-module.umd.js",
@@ -46,7 +46,7 @@
     "@redactie/module-webpack-plugin": "2.0.0",
     "@redactie/redactie-core": "^2.0.0",
     "@redactie/translations-module": "^1.1.0",
-    "@redactie/utils": "^2.1.0",
+    "@redactie/utils": "^2.2.3",
     "@testing-library/jest-dom": "5.0.2",
     "@testing-library/react": "9.4.0",
     "@types/jest": "24.9.1",
