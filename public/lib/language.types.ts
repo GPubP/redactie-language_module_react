@@ -20,3 +20,9 @@ export interface LanguagesModuleAPI {
 		useLanguages: typeof useLanguages;
 	};
 }
+
+export interface LanguagesOverviewRowData {
+	name: string;
+	uuid: string;
+	sites: any[];
+}

@@ -13,7 +13,7 @@ export class LanguagesFacade extends BaseEntityFacade<
 > {
 	public readonly languages$ = this.query.languages$;
 
-	public getLanguages(props: { active: boolean } = { active: false }): void {
+	public getLanguages(props: Record<string, boolean | number | string>): void {
 		const { isFetching } = this.query.getValue();
 
 		if (isFetching) {

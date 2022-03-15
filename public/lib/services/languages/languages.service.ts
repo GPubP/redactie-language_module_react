@@ -4,14 +4,12 @@ import { LanguageSchema, LanguagesSchema } from './languages.service.types';
 
 export class LanguagesApiService {
 	public async getLanguages(
-		{ active }: { active: boolean } = { active: false }
+		searchParams: Record<string, string | number | boolean>
 	): Promise<LanguagesSchema | null> {
 		try {
 			const response: LanguagesSchema = await apiService
 				.get('languages', {
-					searchParams: {
-						active,
-					},
+					searchParams,
 				})
 				.json();
 
