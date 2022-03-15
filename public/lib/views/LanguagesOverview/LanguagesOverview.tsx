@@ -95,7 +95,7 @@ const LanguagesOverview: FC = () => {
 										as={Select}
 									/>
 									<small className="u-block u-text-light u-margin-top-xs">
-										Select de taal die u wil activeren voor deze tenant.
+										Selecteer de taal die u wil activeren voor deze tenant.
 									</small>
 									<ErrorMessage name="languageId" />
 								</div>
