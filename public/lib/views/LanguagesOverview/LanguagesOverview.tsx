@@ -6,18 +6,22 @@ import {
 	Table,
 } from '@acpaas-ui/react-editorial-components';
 import { ModuleRouteConfig, useBreadcrumbs } from '@redactie/redactie-core';
-import { DataLoader, ErrorMessage, useRoutes } from '@redactie/utils';
+import { AlertContainer, DataLoader, ErrorMessage, useRoutes } from '@redactie/utils';
 import { Field, Formik } from 'formik';
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 
 import { CORE_TRANSLATIONS, useCoreTranslation } from '../../connectors/translations';
 import { useLanguages } from '../../hooks';
 import useHomeBreadcrumb from '../../hooks/useHomeBreadcrumb/useHomeBreadcrumb';
-import { BREADCRUMB_OPTIONS } from '../../language.const';
+import { ALERT_CONTAINER_IDS, BREADCRUMB_OPTIONS } from '../../language.const';
 import { LanguagesOverviewRowData } from '../../language.types';
 import { languagesFacade } from '../../store/languages';
 
-import { LANGUAGE_COLUMNS } from './LanguagesOverview.const';
+import {
+	ADD_LANGUAGE_VALIDATION_SCHEMA,
+	LANGUAGE_COLUMNS,
+	LANGUAGES_DEFAULT_OPTION,
+} from './LanguagesOverview.const';
 
 const LanguagesOverview: FC = () => {
 	/**
@@ -47,7 +51,9 @@ const LanguagesOverview: FC = () => {
 	 * Methods
 	 */
 	const handleLanguageDeactivate = console.log;
-	const onSubmit = console.log;
+	const onSubmit = ({ languageId }: { languageId: string }): void => {
+		languagesFacade.activateLanguage(languageId, ALERT_CONTAINER_IDS.overview);
+	};
 
 	/**
 	 * Render
@@ -61,15 +67,19 @@ const LanguagesOverview: FC = () => {
 				sites: language.sites || [],
 			}));
 
-		const languageOptions: { label: string; value: string }[] = (languages || []).map(
-			language => ({
+		const languageOptions: { label: string; value: string }[] = (languages || [])
+			.filter(language => !language.active)
+			.map(language => ({
 				value: language.uuid,
 				label: language.name,
-			})
-		);
+			}));
 
 		return (
 			<>
+				<AlertContainer
+					toastClassName="u-margin-bottom"
+					containerId={ALERT_CONTAINER_IDS.overview}
+				/>
 				<Table
 					fixed
 					className="u-margin-top"
@@ -82,7 +92,11 @@ const LanguagesOverview: FC = () => {
 					orderBy={setSorting}
 				/>
 				<div className="m-card u-padding u-margin-top">
-					<Formik initialValues={{ languageId: '' }} onSubmit={onSubmit}>
+					<Formik
+						initialValues={{ languageId: '' }}
+						onSubmit={onSubmit}
+						validationSchema={ADD_LANGUAGE_VALIDATION_SCHEMA}
+					>
 						{({ submitForm }) => (
 							<div className="row">
 								<div className="col-xs-12 col-md">
@@ -91,7 +105,7 @@ const LanguagesOverview: FC = () => {
 										id="languageId"
 										label="Taal"
 										name="languageId"
-										options={languageOptions}
+										options={[LANGUAGES_DEFAULT_OPTION, ...languageOptions]}
 										as={Select}
 									/>
 									<small className="u-block u-text-light u-margin-top-xs">
