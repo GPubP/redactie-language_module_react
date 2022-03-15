@@ -10,7 +10,7 @@ import { DataLoader, ErrorMessage, useRoutes } from '@redactie/utils';
 import { Field, Formik } from 'formik';
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 
-import { CORE_TRANSLATIONS, useCoreTranslation } from '../../connectors/translations';
+import translationsConnector, { CORE_TRANSLATIONS } from '../../connectors/translations';
 import { useLanguages } from '../../hooks';
 import useHomeBreadcrumb from '../../hooks/useHomeBreadcrumb/useHomeBreadcrumb';
 import { BREADCRUMB_OPTIONS } from '../../language.const';
@@ -33,7 +33,7 @@ const LanguagesOverview: FC = () => {
 		extraBreadcrumbs: [useHomeBreadcrumb()],
 	});
 	const [languagesLoading, languages] = useLanguages();
-	const [t] = useCoreTranslation();
+	const [t] = translationsConnector.useCoreTranslation();
 
 	useEffect(() => {
 		languagesFacade.getLanguages({

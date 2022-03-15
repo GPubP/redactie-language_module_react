@@ -29,11 +29,6 @@ class TranslationsConnector {
 	}
 }
 
-export const useCoreTranslation = (): [(keys: string | string[]) => string] =>
-	translationsConnector?.core?.useTranslation
-		? translationsConnector.core.useTranslation('nl_BE')
-		: [() => 'TRANSLATIONS MODULE ERROR'];
-
 const translationsConnector = new TranslationsConnector();
 
 export const CORE_TRANSLATIONS = translationsConnector.CORE_TRANSLATIONS;
