@@ -21,6 +21,16 @@ export const getAlertMessages = (data: Partial<LanguageSchema>): Record<string, 
 			message: `Het activeren van de taal is mislukt`,
 		},
 	},
+	deactivate: {
+		success: {
+			title: 'Gedeactiveerd',
+			message: `De taal "${data.name}" is succesvol gedeactiveerd`,
+		},
+		error: {
+			title: 'Deactivatie mislukt',
+			message: `Het deactiveren van de taal is mislukt`,
+		},
+	},
 	update: {
 		success: {
 			title: 'Bewaard',

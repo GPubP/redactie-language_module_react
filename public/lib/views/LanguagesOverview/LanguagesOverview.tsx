@@ -36,7 +36,12 @@ const LanguagesOverview: FC = () => {
 		...BREADCRUMB_OPTIONS,
 		extraBreadcrumbs: [useHomeBreadcrumb()],
 	});
-	const [languagesLoading, languages] = useLanguages();
+	const [
+		languagesLoading,
+		languageIdDeactivating,
+		isLanguageActivating,
+		languages,
+	] = useLanguages();
 	const [t] = translationsConnector.useCoreTranslation();
 
 	useEffect(() => {
@@ -50,7 +55,10 @@ const LanguagesOverview: FC = () => {
 	/**
 	 * Methods
 	 */
-	const handleLanguageDeactivate = console.log;
+	const handleLanguageDeactivate = (languageId: string): void => {
+		languagesFacade.deactivateLanguage(languageId, ALERT_CONTAINER_IDS.overview);
+	};
+
 	const onSubmit = ({ languageId }: { languageId: string }): void => {
 		languagesFacade.activateLanguage(languageId, ALERT_CONTAINER_IDS.overview);
 	};
@@ -84,7 +92,7 @@ const LanguagesOverview: FC = () => {
 					fixed
 					className="u-margin-top"
 					tableClassName="a-table--fixed--xs"
-					columns={LANGUAGE_COLUMNS(t, false, handleLanguageDeactivate)}
+					columns={LANGUAGE_COLUMNS(t, handleLanguageDeactivate, languageIdDeactivating)}
 					rows={languagesRows}
 					noDataMessage={t(CORE_TRANSLATIONS['TABLE_NO-RESULT'])}
 					loadDataMessage="Talen ophalen"
@@ -115,7 +123,14 @@ const LanguagesOverview: FC = () => {
 								</div>
 
 								<div className="u-flex-shrink-md col-xs-12 col-sm-4 u-margin-top">
-									<Button htmlType="button" onClick={submitForm} outline>
+									<Button
+										htmlType="button"
+										onClick={submitForm}
+										outline
+										iconLeft={
+											isLanguageActivating ? 'circle-o-notch fa-spin' : null
+										}
+									>
 										{t(CORE_TRANSLATIONS.BUTTON_ADD)}
 									</Button>
 								</div>

@@ -12,6 +12,8 @@ export class LanguagesFacade extends BaseEntityFacade<
 	LanguagesQuery
 > {
 	public readonly languages$ = this.query.languages$;
+	public readonly languageIdDeactivating$ = this.query.select('languageIdDeactivating');
+	public readonly isLanguageActivating$ = this.query.select('isLanguageActivating');
 
 	public getLanguages(props: Record<string, boolean | number | string>): void {
 		const { isFetching } = this.query.getValue();
@@ -85,6 +87,7 @@ export class LanguagesFacade extends BaseEntityFacade<
 			return Promise.resolve();
 		}
 
+		this.store.update({ isLanguageActivating: true });
 		this.store.setIsUpdating(true);
 
 		return this.service
@@ -97,7 +100,7 @@ export class LanguagesFacade extends BaseEntityFacade<
 					throw new Error(`Activating language '${languageId}' failed!`);
 				}
 
-				this.store.update({ isUpdating: false });
+				this.store.update({ isUpdating: false, isLanguageActivating: false });
 				this.store.upsert(languageId, { active: true });
 
 				alertService.success(getAlertMessages(response).activate.success, {
@@ -108,9 +111,50 @@ export class LanguagesFacade extends BaseEntityFacade<
 				this.store.update({
 					error,
 					isUpdating: false,
+					isLanguageActivating: false,
 				});
 
 				alertService.danger(getAlertMessages({ uuid: languageId }).activate.error, {
+					containerId: alertId,
+				});
+			});
+	}
+
+	public deactivateLanguage(languageId: string, alertId: string): Promise<void> {
+		const { isUpdating } = this.query.getValue();
+
+		if (isUpdating) {
+			return Promise.resolve();
+		}
+
+		this.store.update({ languageIdDeactivating: languageId });
+		this.store.setIsUpdating(true);
+
+		return this.service
+			.updateLanguage({
+				uuid: languageId,
+				active: false,
+			})
+			.then(response => {
+				if (!response) {
+					throw new Error(`Deactivating language '${languageId}' failed!`);
+				}
+
+				this.store.update({ isUpdating: false, languageIdDeactivating: null });
+				this.store.upsert(languageId, { active: false });
+
+				alertService.warning(getAlertMessages(response).deactivate.success, {
+					containerId: alertId,
+				});
+			})
+			.catch(error => {
+				this.store.update({
+					error,
+					isUpdating: false,
+					languageIdDeactivating: null,
+				});
+
+				alertService.warning(getAlertMessages({ uuid: languageId }).deactivate.error, {
 					containerId: alertId,
 				});
 			});

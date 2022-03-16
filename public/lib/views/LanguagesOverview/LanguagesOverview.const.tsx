@@ -1,10 +1,10 @@
 import { Button } from '@acpaas-ui/react-components';
-import { TableColumn } from '@redactie/utils';
+import { TableColumn, useObservable } from '@redactie/utils';
 import { path } from 'ramda';
 import React from 'react';
 import { object, string } from 'yup';
 
-import { LanguageModel } from '../../store/languages';
+import { LanguageModel, languagesFacade } from '../../store/languages';
 
 export const LANGUAGES_DEFAULT_OPTION = {
 	key: 'default-option',
@@ -19,8 +19,8 @@ export const ADD_LANGUAGE_VALIDATION_SCHEMA = object().shape({
 
 export const LANGUAGE_COLUMNS = (
 	t: (keys: string | string[]) => string,
-	languageChanging: boolean,
-	onLanguageDeactivate: (uuid: string) => void
+	onLanguageDeactivate: (uuid: string) => void,
+	languageDeactivating?: string
 ): TableColumn<LanguageModel>[] => [
 	{
 		label: 'Naam',
@@ -30,12 +30,13 @@ export const LANGUAGE_COLUMNS = (
 	{
 		label: 'Gebruikt op',
 		width: '50%',
-		component: (_, { sites }): React.ReactElement =>
-			(sites || []).length ? (
-				<p>{(sites || []).map(path(['data', 'name'])).join(', ')}</p>
-			) : (
-				<i className="u-text-light">Niet gebruikt.</i>
-			),
+		component: (_, { sites }): React.ReactElement => {
+			if (!(sites || []).length) {
+				<i className="u-text-light">Niet gebruikt.</i>;
+			}
+
+			return <p>{(sites || []).map(path(['data', 'name'])).join(', ')}</p>;
+		},
 		disableSorting: true,
 	},
 	{
@@ -43,13 +44,14 @@ export const LANGUAGE_COLUMNS = (
 		width: '20%',
 		classList: ['u-text-right'],
 		component: (_: string, { uuid, sites }): React.ReactElement => {
+			// eslint-disable-next-line react-hooks/rules-of-hooks
 			return (
 				<Button
 					type="danger"
 					outline
 					disabled={!!sites?.length}
 					onClick={() => onLanguageDeactivate(uuid)}
-					iconLeft={languageChanging ? 'circle-o-notch fa-spin' : null}
+					iconLeft={languageDeactivating === uuid ? 'circle-o-notch fa-spin' : null}
 				>
 					Deactiveren
 				</Button>
