@@ -26,3 +26,7 @@ export interface LanguagesOverviewRowData {
 	uuid: string;
 	sites: any[];
 }
+
+export enum ALERT_CONTAINER_IDS {
+	languageOverview = 'language-overview',
+}

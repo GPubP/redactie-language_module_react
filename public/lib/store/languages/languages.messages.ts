@@ -1,6 +1,6 @@
 import { LanguageSchema } from '../../services/languages';
 
-export const getAlertMessages = (data: LanguageSchema): Record<string, any> => ({
+export const getAlertMessages = (data: Partial<LanguageSchema>): Record<string, any> => ({
 	create: {
 		success: {
 			title: 'Aangemaakt',
@@ -9,6 +9,16 @@ export const getAlertMessages = (data: LanguageSchema): Record<string, any> => (
 		error: {
 			title: 'Aanmaken mislukt',
 			message: `Het aanmaken van de taal "${data.name}" is mislukt`,
+		},
+	},
+	activate: {
+		success: {
+			title: 'Geactiveerd',
+			message: `De taal "${data.name}" is succesvol geactiveerd`,
+		},
+		error: {
+			title: 'Activatie mislukt',
+			message: `Het activeren van de taal is mislukt`,
 		},
 	},
 	update: {
