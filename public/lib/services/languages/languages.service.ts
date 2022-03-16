@@ -1,17 +1,17 @@
+import { pick } from 'ramda';
+
 import { apiService } from '../api';
 
 import { LanguageSchema, LanguagesSchema } from './languages.service.types';
 
 export class LanguagesApiService {
 	public async getLanguages(
-		{ active }: { active: boolean } = { active: false }
+		searchParams: Record<string, string | number | boolean>
 	): Promise<LanguagesSchema | null> {
 		try {
 			const response: LanguagesSchema = await apiService
 				.get('languages', {
-					searchParams: {
-						active,
-					},
+					searchParams,
 				})
 				.json();
 
@@ -26,11 +26,11 @@ export class LanguagesApiService {
 		}
 	}
 
-	public async updateLanguage(language: LanguageSchema): Promise<LanguageSchema | null> {
+	public async updateLanguage(language: Partial<LanguageSchema>): Promise<LanguageSchema | null> {
 		try {
 			const response: LanguageSchema = await apiService
-				.put(`languages/${language.uuid}`, {
-					json: language,
+				.patch(`languages/${language.uuid}`, {
+					json: pick(['active', 'primary'])(language),
 				})
 				.json();
 

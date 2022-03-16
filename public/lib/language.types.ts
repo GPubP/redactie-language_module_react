@@ -20,3 +20,13 @@ export interface LanguagesModuleAPI {
 		useLanguages: typeof useLanguages;
 	};
 }
+
+export interface LanguagesOverviewRowData {
+	name: string;
+	uuid: string;
+	sites: any[];
+}
+
+export enum ALERT_CONTAINER_IDS {
+	languageOverview = 'language-overview',
+}

@@ -13,7 +13,7 @@ export class LanguagesFacade extends BaseEntityFacade<
 > {
 	public readonly languages$ = this.query.languages$;
 
-	public getLanguages(props: { active: boolean } = { active: false }): void {
+	public getLanguages(props: Record<string, boolean | number | string>): void {
 		const { isFetching } = this.query.getValue();
 
 		if (isFetching) {
@@ -42,7 +42,7 @@ export class LanguagesFacade extends BaseEntityFacade<
 			});
 	}
 
-	public updateLanguage(body: LanguageSchema, alertId: string): Promise<void> {
+	public updateLanguage(body: Partial<LanguageSchema>, alertId: string): Promise<void> {
 		const { isUpdating } = this.query.getValue();
 
 		if (isUpdating) {
@@ -73,6 +73,44 @@ export class LanguagesFacade extends BaseEntityFacade<
 				});
 
 				alertService.danger(getAlertMessages(body).update.error, {
+					containerId: alertId,
+				});
+			});
+	}
+
+	public activateLanguage(languageId: string, alertId: string): Promise<void> {
+		const { isUpdating } = this.query.getValue();
+
+		if (isUpdating) {
+			return Promise.resolve();
+		}
+
+		this.store.setIsUpdating(true);
+
+		return this.service
+			.updateLanguage({
+				uuid: languageId,
+				active: true,
+			})
+			.then(response => {
+				if (!response) {
+					throw new Error(`Activating language '${languageId}' failed!`);
+				}
+
+				this.store.update({ isUpdating: false });
+				this.store.upsert(languageId, { active: true });
+
+				alertService.success(getAlertMessages(response).activate.success, {
+					containerId: alertId,
+				});
+			})
+			.catch(error => {
+				this.store.update({
+					error,
+					isUpdating: false,
+				});
+
+				alertService.danger(getAlertMessages({ uuid: languageId }).activate.error, {
 					containerId: alertId,
 				});
 			});
