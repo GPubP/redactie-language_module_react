@@ -6,7 +6,7 @@ import {
 	Table,
 } from '@acpaas-ui/react-editorial-components';
 import { ModuleRouteConfig, useBreadcrumbs } from '@redactie/redactie-core';
-import { AlertContainer, DataLoader, ErrorMessage, useRoutes } from '@redactie/utils';
+import { AlertContainer, DataLoader, DeletePrompt, ErrorMessage, useRoutes } from '@redactie/utils';
 import { Field, Formik } from 'formik';
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 
@@ -31,6 +31,8 @@ const LanguagesOverview: FC = () => {
 		key: 'name',
 		order: 'asc',
 	});
+	const [showDeactivateModal, setShowDeactivateModal] = useState(false);
+	const [toDeactivateLanguage, setToDeactivateLanguage] = useState<string>('');
 	const routes = useRoutes();
 	const breadcrumbs = useBreadcrumbs(routes as ModuleRouteConfig[], {
 		...BREADCRUMB_OPTIONS,
@@ -56,7 +58,17 @@ const LanguagesOverview: FC = () => {
 	 * Methods
 	 */
 	const handleLanguageDeactivate = (languageId: string): void => {
-		languagesFacade.deactivateLanguage(languageId, ALERT_CONTAINER_IDS.overview);
+		setShowDeactivateModal(true);
+		setToDeactivateLanguage(languageId);
+	};
+
+	const onDeactivatePromptCancel = (): void => {
+		setShowDeactivateModal(false);
+	};
+
+	const onDeactivatePromptConfirm = (): void => {
+		languagesFacade.deactivateLanguage(toDeactivateLanguage, ALERT_CONTAINER_IDS.overview);
+		setShowDeactivateModal(false);
 	};
 
 	const onSubmit = ({ languageId }: { languageId: string }): void => {
@@ -100,6 +112,7 @@ const LanguagesOverview: FC = () => {
 					orderBy={setSorting}
 				/>
 				<div className="m-card u-padding u-margin-top">
+					<h5 className="u-margin-bottom">Voeg een taal toe</h5>
 					<Formik
 						initialValues={{ languageId: '' }}
 						onSubmit={onSubmit}
@@ -138,6 +151,18 @@ const LanguagesOverview: FC = () => {
 						)}
 					</Formik>
 				</div>
+
+				<DeletePrompt
+					body="Er zijn binnen deze tenant geen sites items die deze taal gebruiken. Als je deze taal deactiveert wordt deze niet meer aangeboden aan de redacteurs."
+					title="Bevestigen"
+					isDeleting={!!languageIdDeactivating}
+					show={showDeactivateModal}
+					onCancel={onDeactivatePromptCancel}
+					confirmButtonIcon="check"
+					confirmButtonType="success"
+					onConfirm={onDeactivatePromptConfirm}
+					confirmText="Ja, ok"
+				/>
 			</>
 		);
 	};

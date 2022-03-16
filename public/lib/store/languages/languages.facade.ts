@@ -143,7 +143,7 @@ export class LanguagesFacade extends BaseEntityFacade<
 				this.store.update({ isUpdating: false, languageIdDeactivating: null });
 				this.store.upsert(languageId, { active: false });
 
-				alertService.warning(getAlertMessages(response).deactivate.success, {
+				alertService.success(getAlertMessages(response).deactivate.success, {
 					containerId: alertId,
 				});
 			})
@@ -154,7 +154,7 @@ export class LanguagesFacade extends BaseEntityFacade<
 					languageIdDeactivating: null,
 				});
 
-				alertService.warning(getAlertMessages({ uuid: languageId }).deactivate.error, {
+				alertService.success(getAlertMessages({ uuid: languageId }).deactivate.error, {
 					containerId: alertId,
 				});
 			});

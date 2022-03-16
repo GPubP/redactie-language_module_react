@@ -50,7 +50,7 @@
     "@redactie/roles-rights-module": "^1.2.2",
     "@redactie/sites-module": "^1.4.2",
     "@redactie/translations-module": "^1.1.0",
-    "@redactie/utils": "^2.2.3",
+    "@redactie/utils": "^2.2.5",
     "@testing-library/jest-dom": "5.0.2",
     "@testing-library/react": "9.4.0",
     "@types/jest": "24.9.1",
