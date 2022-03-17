@@ -27,14 +27,9 @@ class TranslationsConnector {
 			? this.core.useTranslation('nl_BE')
 			: [() => 'TRANSLATIONS MODULE ERROR'];
 	}
-
-	public useModuleTranslation(): [TranslateFunc] {
-		return this.modules?.useTranslation
-			? this.modules.useTranslation('languages', 'nl_BE')
-			: [() => 'TRANSLATIONS MODULE ERROR'];
-	}
 }
 
 const translationsConnector = new TranslationsConnector();
 
+export const CORE_TRANSLATIONS = translationsConnector.CORE_TRANSLATIONS;
 export default translationsConnector;
