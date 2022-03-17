@@ -3,9 +3,12 @@ import { RenderChildRoutes, TenantContext } from '@redactie/utils';
 import React, { FC, useMemo } from 'react';
 
 import { registerLanguagesModule } from './lib/api';
+import { registerTranslations } from './lib/i18next';
 import { MODULE_PATHS } from './lib/language.const';
 import { LanguagesModuleRouteProps } from './lib/language.types';
 import { LanguagesOverview } from './lib/views';
+
+registerTranslations();
 
 const LanguagesRoot: FC<LanguagesModuleRouteProps> = ({ route, tenantId }) => {
 	const guardsMeta = useMemo(() => ({ tenantId }), [tenantId]);
