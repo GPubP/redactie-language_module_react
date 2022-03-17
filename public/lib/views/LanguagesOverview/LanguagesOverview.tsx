@@ -6,7 +6,7 @@ import {
 	Table,
 } from '@acpaas-ui/react-editorial-components';
 import { ModuleRouteConfig, useBreadcrumbs } from '@redactie/redactie-core';
-import { AlertContainer, DataLoader, ErrorMessage, useRoutes } from '@redactie/utils';
+import { AlertContainer, DataLoader, DeletePrompt, ErrorMessage, useRoutes } from '@redactie/utils';
 import { Field, Formik } from 'formik';
 import React, { FC, ReactElement, useEffect, useState } from 'react';
 
@@ -31,12 +31,19 @@ const LanguagesOverview: FC = () => {
 		key: 'name',
 		order: 'asc',
 	});
+	const [showDeactivateModal, setShowDeactivateModal] = useState(false);
+	const [toDeactivateLanguage, setToDeactivateLanguage] = useState<string>('');
 	const routes = useRoutes();
 	const breadcrumbs = useBreadcrumbs(routes as ModuleRouteConfig[], {
 		...BREADCRUMB_OPTIONS,
 		extraBreadcrumbs: [useHomeBreadcrumb()],
 	});
-	const [languagesLoading, languages] = useLanguages();
+	const [
+		languagesLoading,
+		languageIdDeactivating,
+		isLanguageActivating,
+		languages,
+	] = useLanguages();
 	const [t] = translationsConnector.useCoreTranslation();
 
 	useEffect(() => {
@@ -50,7 +57,20 @@ const LanguagesOverview: FC = () => {
 	/**
 	 * Methods
 	 */
-	const handleLanguageDeactivate = console.log;
+	const handleLanguageDeactivate = (languageId: string): void => {
+		setShowDeactivateModal(true);
+		setToDeactivateLanguage(languageId);
+	};
+
+	const onDeactivatePromptCancel = (): void => {
+		setShowDeactivateModal(false);
+	};
+
+	const onDeactivatePromptConfirm = (): void => {
+		languagesFacade.deactivateLanguage(toDeactivateLanguage, ALERT_CONTAINER_IDS.overview);
+		setShowDeactivateModal(false);
+	};
+
 	const onSubmit = ({ languageId }: { languageId: string }): void => {
 		languagesFacade.activateLanguage(languageId, ALERT_CONTAINER_IDS.overview);
 	};
@@ -84,7 +104,7 @@ const LanguagesOverview: FC = () => {
 					fixed
 					className="u-margin-top"
 					tableClassName="a-table--fixed--xs"
-					columns={LANGUAGE_COLUMNS(t, false, handleLanguageDeactivate)}
+					columns={LANGUAGE_COLUMNS(t, handleLanguageDeactivate, languageIdDeactivating)}
 					rows={languagesRows}
 					noDataMessage={t(CORE_TRANSLATIONS['TABLE_NO-RESULT'])}
 					loadDataMessage="Talen ophalen"
@@ -92,6 +112,7 @@ const LanguagesOverview: FC = () => {
 					orderBy={setSorting}
 				/>
 				<div className="m-card u-padding u-margin-top">
+					<h5 className="u-margin-bottom">Voeg een taal toe</h5>
 					<Formik
 						initialValues={{ languageId: '' }}
 						onSubmit={onSubmit}
@@ -115,7 +136,14 @@ const LanguagesOverview: FC = () => {
 								</div>
 
 								<div className="u-flex-shrink-md col-xs-12 col-sm-4 u-margin-top">
-									<Button htmlType="button" onClick={submitForm} outline>
+									<Button
+										htmlType="button"
+										onClick={submitForm}
+										outline
+										iconLeft={
+											isLanguageActivating ? 'circle-o-notch fa-spin' : null
+										}
+									>
 										{t(CORE_TRANSLATIONS.BUTTON_ADD)}
 									</Button>
 								</div>
@@ -123,6 +151,18 @@ const LanguagesOverview: FC = () => {
 						)}
 					</Formik>
 				</div>
+
+				<DeletePrompt
+					body="Er zijn binnen deze tenant geen sites items die deze taal gebruiken. Als je deze taal deactiveert wordt deze niet meer aangeboden aan de redacteurs."
+					title="Bevestigen"
+					isDeleting={!!languageIdDeactivating}
+					show={showDeactivateModal}
+					onCancel={onDeactivatePromptCancel}
+					confirmButtonIcon="check"
+					confirmButtonType="success"
+					onConfirm={onDeactivatePromptConfirm}
+					confirmText="Ja, ok"
+				/>
 			</>
 		);
 	};

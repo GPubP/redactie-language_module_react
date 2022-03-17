@@ -14,11 +14,21 @@ export const getAlertMessages = (data: Partial<LanguageSchema>): Record<string, 
 	activate: {
 		success: {
 			title: 'Geactiveerd',
-			message: `De taal "${data.name}" is succesvol geactiveerd`,
+			message: `"${data.name}" is nu geactiveerd voor je tenant en kan gebruikt worden op content te vertalen.`,
 		},
 		error: {
 			title: 'Activatie mislukt',
 			message: `Het activeren van de taal is mislukt`,
+		},
+	},
+	deactivate: {
+		success: {
+			title: 'Gedeactiveerd',
+			message: `"${data.name}" is gedeactiveerd en kan niet meer gebruikt worden om content te vertalen.`,
+		},
+		error: {
+			title: 'Deactivatie mislukt',
+			message: `Het deactiveren van de taal is mislukt`,
 		},
 	},
 	update: {
