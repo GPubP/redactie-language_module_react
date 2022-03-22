@@ -8,4 +8,8 @@ export interface InternalState {
 
 export type LanguageModel = LanguageSchema;
 
-export type LanguagesState = BaseEntityState<LanguageModel, string>;
+export interface LanguagesState extends BaseEntityState<LanguageModel, string> {
+	languages: LanguageModel[];
+	activeLanguages: LanguageModel[];
+	isFetchingActiveLanguages: boolean;
+}

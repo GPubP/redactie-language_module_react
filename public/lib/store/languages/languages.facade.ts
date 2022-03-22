@@ -1,4 +1,5 @@
-import { alertService, BaseEntityFacade } from '@redactie/utils';
+import { arrayUpdate, arrayUpsert } from '@datorama/akita';
+import { alertService, BaseEntityFacade, LoadingState } from '@redactie/utils';
 
 import { languagesApiService, LanguagesApiService, LanguageSchema } from '../../services/languages';
 
@@ -12,8 +13,10 @@ export class LanguagesFacade extends BaseEntityFacade<
 	LanguagesQuery
 > {
 	public readonly languages$ = this.query.languages$;
+	public readonly activeLanguages$ = this.query.activeLanguages$;
 	public readonly languageIdDeactivating$ = this.query.select('languageIdDeactivating');
 	public readonly isLanguageActivating$ = this.query.select('isLanguageActivating');
+	public readonly isFetchingActiveLanguages$ = this.query.select('isFetchingActiveLanguages');
 
 	public getLanguages(props: Record<string, boolean | number | string>): void {
 		const { isFetching } = this.query.getValue();
@@ -31,15 +34,43 @@ export class LanguagesFacade extends BaseEntityFacade<
 					throw new Error('Getting languages failed!');
 				}
 
-				this.store.set(response._embedded.languages);
-				this.store.update({
-					isFetching: false,
-				});
+				this.store.update({ languages: response._embedded.languages, isFetching: false });
 			})
 			.catch(error => {
 				this.store.update({
 					error,
 					isFetching: false,
+				});
+			});
+	}
+
+	public getActiveLanguages(props: Record<string, boolean | number | string>): void {
+		const { isFetchingActiveLanguages } = this.query.getValue();
+
+		if (isFetchingActiveLanguages) {
+			return;
+		}
+
+		this.store.update({
+			isFetchingActiveLanguages: true,
+		});
+
+		this.service
+			.getLanguages({ ...props, active: true })
+			.then(response => {
+				if (!response) {
+					throw new Error('Getting languages failed!');
+				}
+
+				this.store.update({
+					activeLanguages: response._embedded.languages,
+					isFetchingActiveLanguages: false,
+				});
+			})
+			.catch(error => {
+				this.store.update({
+					error,
+					isFetchingActiveLanguages: false,
 				});
 			});
 	}
@@ -100,8 +131,10 @@ export class LanguagesFacade extends BaseEntityFacade<
 					throw new Error(`Activating language '${languageId}' failed!`);
 				}
 
+				this.store.update(({ languages }) => ({
+					languages: arrayUpsert(languages, languageId, response, 'uuid'),
+				}));
 				this.store.update({ isUpdating: false, isLanguageActivating: false });
-				this.store.upsert(languageId, { active: true });
 
 				alertService.success(getAlertMessages(response).activate.success, {
 					containerId: alertId,
@@ -140,8 +173,10 @@ export class LanguagesFacade extends BaseEntityFacade<
 					throw new Error(`Deactivating language '${languageId}' failed!`);
 				}
 
+				this.store.update(({ languages }) => ({
+					languages: arrayUpsert(languages, languageId, response, 'uuid'),
+				}));
 				this.store.update({ isUpdating: false, languageIdDeactivating: null });
-				this.store.upsert(languageId, { active: false });
 
 				alertService.success(getAlertMessages(response).deactivate.success, {
 					containerId: alertId,
