@@ -7,11 +7,17 @@ import { LanguageModel, LanguagesState } from './languages.model';
 export class LanguagesStore extends BaseEntityStore<LanguagesState, LanguageModel> {
 	languageIdDeactivating?: string;
 	isLanguageActivating?: boolean;
+	isFetchingActiveLanguages?: boolean;
+	languages?: LanguageModel[];
+	activeLanguages?: LanguageModel;
 }
 
 const initialState = {
 	languageIdDeactivating: null,
 	isLanguageActivating: false,
+	isFetchingActiveLanguages: false,
+	languages: undefined,
+	activeLanguages: undefined,
 };
 
 export const languagesStore = new LanguagesStore(initialState);
