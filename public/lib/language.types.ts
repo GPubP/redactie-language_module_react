@@ -1,6 +1,6 @@
 import { ModuleRouteConfig, RouteConfigComponentProps } from '@redactie/redactie-core';
 
-import { useLanguages } from './hooks';
+import { useActiveLanguages, useActiveLanguagesForSite, useLanguages } from './hooks';
 import { LanguagesApiService } from './services/languages';
 import { LanguagesFacade } from './store/languages';
 
@@ -18,6 +18,8 @@ export interface LanguagesModuleAPI {
 	};
 	hooks: {
 		useLanguages: typeof useLanguages;
+		useActiveLanguages: typeof useActiveLanguages;
+		useActiveLanguagesForSite: typeof useActiveLanguagesForSite;
 	};
 }
 
