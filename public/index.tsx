@@ -41,3 +41,4 @@ Core.routes.register({
 registerLanguagesModule();
 
 export * from './lib/api/api.types';
+export * from './lib/services/languages/languages.service.types';
