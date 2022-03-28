@@ -17,7 +17,7 @@ const useActiveLanguages = (): [LoadingState, LanguageSchema[] | null | undefine
 	if (!activeLanguages) {
 		languagesFacade.getActiveLanguages({
 			pagesize: '-1',
-			includeOccurrences: true,
+			includeSiteOccurrences: true,
 			sort: 'name',
 		});
 	}
