@@ -19,7 +19,7 @@ export interface LanguageSchema {
 	uuid: string;
 	_id?: string;
 	name: string;
-	key?: string;
+	key: string;
 	sites?: SiteDetailModel[];
 	localizedName?: string;
 	primary?: boolean;
