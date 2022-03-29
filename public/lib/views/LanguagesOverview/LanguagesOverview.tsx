@@ -49,7 +49,7 @@ const LanguagesOverview: FC = () => {
 	useEffect(() => {
 		languagesFacade.getLanguages({
 			pagesize: '-1',
-			includeOccurrences: true,
+			includeSiteOccurrences: true,
 			sort: `${sorting.order === 'desc' ? '-' : ''}${sorting.key}`,
 		});
 	}, [sorting]);
