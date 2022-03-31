@@ -16,7 +16,7 @@ const useActiveLanguagesForSite = (
 		? LoadingState.Loading
 		: LoadingState.Loaded;
 
-	if (!activeLanguages) {
+	if (!activeLanguages && !loading) {
 		languagesFacade.getActiveLanguages({
 			pagesize: '-1',
 			includeSiteOccurrences: true,
