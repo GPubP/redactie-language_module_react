@@ -13,7 +13,7 @@ export interface LanguagesModuleAPI {
 	store: {
 		languages: {
 			service: LanguagesApiService;
-			facade: Pick<LanguagesFacade, 'getLanguages'>;
+			facade: Pick<LanguagesFacade, 'getLanguages' | 'getActiveLanguages'>;
 		};
 	};
 	hooks: {

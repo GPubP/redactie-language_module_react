@@ -7,6 +7,7 @@ export const store: LanguagesModuleAPI['store'] = {
 		service: languagesApiService,
 		facade: {
 			getLanguages: languagesFacade.getLanguages.bind(languagesFacade),
+			getActiveLanguages: languagesFacade.getActiveLanguages.bind(languagesFacade),
 		},
 	},
 };
