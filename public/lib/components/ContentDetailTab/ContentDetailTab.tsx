@@ -1,6 +1,6 @@
 import { Table } from '@acpaas-ui/react-editorial-components';
 import { ExternalTabProps } from '@redactie/content-module';
-import { useNavigate } from '@redactie/utils';
+import { LoadingState, useNavigate } from '@redactie/utils';
 import React, { FC, useEffect, useMemo } from 'react';
 
 import contentConnector from '../../connectors/content';
@@ -15,7 +15,7 @@ const ContentDetailTab: FC<ExternalTabProps> = ({ siteId, contentType, contentIt
 	const [t] = translationsConnector.useCoreTranslation();
 	const { generatePath, navigate } = useNavigate(SITES_ROOT);
 	const [, languages] = useActiveLanguagesForSite(siteId);
-	const [, content] = contentConnector.useContent();
+	const [contentLoadingState, content] = contentConnector.useContent();
 
 	useEffect(() => {
 		contentConnector.getContent(siteId, {
@@ -47,6 +47,7 @@ const ContentDetailTab: FC<ExternalTabProps> = ({ siteId, contentType, contentIt
 								contentTypeId: contentType.uuid,
 								lang: language.key,
 							},
+							undefined,
 							new URLSearchParams({
 								translationId: contentItem.meta.translationId,
 							})
@@ -71,8 +72,9 @@ const ContentDetailTab: FC<ExternalTabProps> = ({ siteId, contentType, contentIt
 			tableClassName="a-table--fixed--xs"
 			columns={TRANSLATIONS_COLUMNS(t)}
 			rows={languagesRows}
+			loading={contentLoadingState === LoadingState.Loading}
 			noDataMessage={t(CORE_TRANSLATIONS['TABLE_NO-RESULT'])}
-			loadDataMessage="Talen ophalen"
+			loadDataMessage="Vertalingen ophalen"
 		/>
 	);
 };
