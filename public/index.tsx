@@ -3,8 +3,10 @@ import { RenderChildRoutes, TenantContext } from '@redactie/utils';
 import React, { FC, useMemo } from 'react';
 
 import { registerLanguagesModule } from './lib/api';
+import { ContentDetailTab } from './lib/components/ContentDetailTab';
+import contentConnector from './lib/connectors/content';
 import { registerTranslations } from './lib/i18next';
-import { MODULE_PATHS } from './lib/language.const';
+import { CONFIG, MODULE_PATHS } from './lib/language.const';
 import { LanguagesModuleRouteProps } from './lib/language.types';
 import { LanguagesOverview } from './lib/views';
 
@@ -36,6 +38,13 @@ Core.routes.register({
 			component: LanguagesOverview,
 		},
 	],
+});
+
+contentConnector.registerContentDetailTab(CONFIG.name, {
+	label: 'Vertaal',
+	module: CONFIG.module,
+	component: ContentDetailTab,
+	containerId: 'content-detail' as any,
 });
 
 registerLanguagesModule();
