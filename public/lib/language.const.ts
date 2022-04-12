@@ -14,10 +14,10 @@ export const BREADCRUMB_OPTIONS = {
 	excludePaths: ['/', '/:tenantId', '/:tenantId/sites/:siteId/bewerken'],
 };
 
-export const CONFIG: Readonly<{ name: string; module: string }> = {
+export const CONFIG: Readonly<{ name: string; module: string }> = Object.freeze({
 	name: 'languages',
 	module: 'languages-module',
-};
+});
 
 export const MODULE_PATHS = {
 	root,
