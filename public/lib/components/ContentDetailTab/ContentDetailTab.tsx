@@ -6,7 +6,7 @@ import React, { FC, useEffect, useMemo } from 'react';
 import contentConnector from '../../connectors/content';
 import translationsConnector, { CORE_TRANSLATIONS } from '../../connectors/translations';
 import { useActiveLanguagesForSite } from '../../hooks';
-import { contentDetail, SITES_ROOT } from '../../language.const';
+import { contentCreate, contentDetail, contentEdit, SITES_ROOT } from '../../language.const';
 
 import { TRANSLATIONS_COLUMNS } from './ContentDetailTab.const';
 import { TranslationTableRow } from './ContentDetailTab.types';
@@ -32,33 +32,31 @@ const ContentDetailTab: FC<ExternalTabProps> = ({ siteId, contentType, contentIt
 					item => item.meta.lang === language.key
 				);
 
+				const defaultNavigateParameters = {
+					siteId,
+					contentTypeId: contentType.uuid,
+					lang: language.key,
+				};
+
 				return {
 					language: `${language.name} (${language.key.toUpperCase()})`,
 					title: contentItemLang?.meta?.label || '',
 					lastModified: contentItemLang?.meta?.lastModified || '',
 					status: contentItemLang?.meta?.status || '',
 					published: contentItemLang?.meta?.published,
-					navigate: (path: string) =>
-						navigate(
-							path,
-							{
-								contentId: contentItemLang?.uuid,
-								siteId,
-								contentTypeId: contentType.uuid,
-								lang: language.key,
-							},
-							undefined,
-							new URLSearchParams({
-								translationId: contentItem.meta.translationId,
-							})
-						),
 					viewPath:
 						contentItemLang &&
 						generatePath(contentDetail, {
 							contentId: contentItemLang.uuid,
-							siteId,
-							contentTypeId: contentType.uuid,
+							...defaultNavigateParameters,
 						}),
+					editPath:
+						contentItemLang &&
+						generatePath(contentEdit, {
+							contentId: contentItemLang.uuid,
+							...defaultNavigateParameters,
+						}),
+					createPath: generatePath(contentCreate, defaultNavigateParameters),
 				};
 			}),
 		// eslint-disable-next-line react-hooks/exhaustive-deps

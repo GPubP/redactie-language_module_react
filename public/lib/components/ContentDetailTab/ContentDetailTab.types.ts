@@ -4,6 +4,7 @@ export interface TranslationTableRow {
 	lastModified: string;
 	status: string;
 	published?: boolean;
-	navigate: (path: string) => void;
 	viewPath?: string;
+	editPath?: string;
+	createPath?: string;
 }

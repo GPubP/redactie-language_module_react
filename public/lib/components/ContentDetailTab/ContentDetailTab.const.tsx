@@ -1,4 +1,4 @@
-import { Link as AUILink, Button } from '@acpaas-ui/react-components';
+import { Link as AUILink, Icon } from '@acpaas-ui/react-components';
 import { EllipsisWithTooltip } from '@acpaas-ui/react-editorial-components';
 import { TranslateFunc } from '@redactie/translations-module';
 import { TableColumn } from '@redactie/utils';
@@ -67,21 +67,22 @@ export const TRANSLATIONS_COLUMNS = (t: TranslateFunc): TableColumn<TranslationT
 			classList: ['u-text-right'],
 			disableSorting: true,
 			width: '15%',
-			component(value, { title, navigate }) {
+			component(value, { title, editPath, createPath }) {
 				return (
 					<>
 						{title ? (
-							<Button
+							<AUILink
 								ariaLabel="Edit"
-								icon="edit"
-								onClick={() => navigate(contentEdit)}
-								type="primary"
-								transparent
-							/>
+								to={editPath}
+								className="a-button a-button--transparent has-icon"
+								component={Link}
+							>
+								<Icon name="edit"></Icon>
+							</AUILink>
 						) : (
-							<Button onClick={() => navigate(contentCreate)} outline type="primary">
+							<AUILink to={createPath} className="a-button-outline" component={Link}>
 								Nieuw aanmaken
-							</Button>
+							</AUILink>
 						)}
 					</>
 				);
