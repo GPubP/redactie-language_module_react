@@ -56,7 +56,13 @@ const ContentDetailTab: FC<ExternalTabProps> = ({ siteId, contentType, contentIt
 							contentId: contentItemLang.uuid,
 							...defaultNavigateParameters,
 						}),
-					createPath: generatePath(contentCreate, defaultNavigateParameters),
+					createPath: generatePath(
+						contentCreate,
+						defaultNavigateParameters,
+						new URLSearchParams({
+							translationId: contentItem.meta.translationId,
+						})
+					),
 				};
 			}),
 		// eslint-disable-next-line react-hooks/exhaustive-deps
