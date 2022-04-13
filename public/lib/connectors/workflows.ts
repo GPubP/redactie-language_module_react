@@ -16,7 +16,7 @@ class WorkflowsConnector {
 	constructor(api?: WorkflowsModuleAPI) {
 		if (!api) {
 			throw new Error(
-				`Content Module:
+				`Language Module:
 				Dependencies not found: ${WorkflowsConnector.apiName}`
 			);
 		}
