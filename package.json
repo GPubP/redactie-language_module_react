@@ -1,6 +1,6 @@
 {
   "name": "@redactie/language-module",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "redactie language module",
   "main": "dist/redactie-language-module.umd.js",
   "module": "dist/redactie-language-module.umd.js",
