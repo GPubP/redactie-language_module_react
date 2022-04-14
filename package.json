@@ -52,6 +52,7 @@
     "@redactie/sites-module": "^1.4.2",
     "@redactie/translations-module": "^1.1.0",
     "@redactie/utils": "^2.2.5",
+    "@redactie/workflows-module": "^1.4.3",
     "@testing-library/jest-dom": "5.0.2",
     "@testing-library/react": "9.4.0",
     "@types/jest": "24.9.1",
