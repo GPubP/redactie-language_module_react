@@ -14,7 +14,7 @@
 
 ### API
 
-• **API**: [`LanguagesModuleAPI`](../wiki/index.LanguagesModuleAPI)
+• `Const` **API**: [`LanguagesModuleAPI`](../wiki/index.LanguagesModuleAPI)
 
 #### Defined in
 
@@ -24,7 +24,7 @@ public/lib/api/index.ts:8
 
 ### registerLanguagesModule
 
-▸ `Const` **registerLanguagesModule**(): `void`
+▸ **registerLanguagesModule**(): `void`
 
 #### Returns
 
