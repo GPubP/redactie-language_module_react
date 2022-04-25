@@ -5,11 +5,13 @@ import { LanguagesModuleAPI } from '../language.types';
 import { hooks } from './hooks';
 import { store } from './store';
 
-export const registerLanguagesModule = (): void => {
-	const api: LanguagesModuleAPI = {
-		store,
-		hooks,
-	};
-
-	Core.modules.exposeModuleApi('languages-module', api);
+const API: LanguagesModuleAPI = {
+	store,
+	hooks,
 };
+
+export const registerLanguagesModule = (): void => {
+	Core.modules.exposeModuleApi('languages-module', API);
+};
+
+export { API };
