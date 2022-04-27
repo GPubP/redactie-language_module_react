@@ -1,10 +1,12 @@
 import { Button } from '@acpaas-ui/react-components';
-import { TableColumn, useObservable } from '@redactie/utils';
+import { EllipsisWithTooltip } from '@acpaas-ui/react-editorial-components';
+import { TableColumn } from '@redactie/utils';
+import classnames from 'classnames';
 import { path } from 'ramda';
 import React from 'react';
 import { object, string } from 'yup';
 
-import { LanguageModel, languagesFacade } from '../../store/languages';
+import { LanguageModel } from '../../store/languages';
 
 export const LANGUAGES_DEFAULT_OPTION = {
 	key: 'default-option',
@@ -35,7 +37,11 @@ export const LANGUAGE_COLUMNS = (
 				<i className="u-text-light">Niet gebruikt.</i>;
 			}
 
-			return <p>{(sites || []).map(path(['data', 'name'])).join(', ')}</p>;
+			return (
+				<EllipsisWithTooltip>
+					{(sites || []).map(path(['data', 'name'])).join(', ')}
+				</EllipsisWithTooltip>
+			);
 		},
 		disableSorting: true,
 	},
