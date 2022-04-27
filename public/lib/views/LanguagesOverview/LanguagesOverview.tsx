@@ -153,7 +153,7 @@ const LanguagesOverview: FC = () => {
 				</div>
 
 				<DeletePrompt
-					body="Er zijn binnen deze tenant geen sites items die deze taal gebruiken. Als je deze taal deactiveert wordt deze niet meer aangeboden aan de redacteurs."
+					body="Er zijn binnen deze tenant geen sites die deze taal gebruiken. Als je deze taal deactiveert kan deze niet meer geactiveerd worden op een site."
 					title="Bevestigen"
 					isDeleting={!!languageIdDeactivating}
 					show={showDeactivateModal}
