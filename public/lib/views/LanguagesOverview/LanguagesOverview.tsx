@@ -13,6 +13,7 @@ import React, { FC, ReactElement, useEffect, useState } from 'react';
 import translationsConnector, { CORE_TRANSLATIONS } from '../../connectors/translations';
 import { useLanguages } from '../../hooks';
 import useHomeBreadcrumb from '../../hooks/useHomeBreadcrumb/useHomeBreadcrumb';
+import { MODULE_TRANSLATIONS } from '../../i18next/translations.const';
 import { ALERT_CONTAINER_IDS, BREADCRUMB_OPTIONS } from '../../language.const';
 import { LanguagesOverviewRowData } from '../../language.types';
 import { languagesFacade } from '../../store/languages';
@@ -153,7 +154,7 @@ const LanguagesOverview: FC = () => {
 				</div>
 
 				<DeletePrompt
-					body="Er zijn binnen deze tenant geen sites items die deze taal gebruiken. Als je deze taal deactiveert wordt deze niet meer aangeboden aan de redacteurs."
+					body={MODULE_TRANSLATIONS.LANGUAGES_DELETE_DESCRIPTION}
 					title="Bevestigen"
 					isDeleting={!!languageIdDeactivating}
 					show={showDeactivateModal}
