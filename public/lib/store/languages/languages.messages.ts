@@ -14,7 +14,7 @@ export const getAlertMessages = (data: Partial<LanguageSchema>): Record<string, 
 	activate: {
 		success: {
 			title: 'Geactiveerd',
-			message: `"${data.name}" is nu geactiveerd voor je tenant en kan gebruikt worden op content te vertalen.`,
+			message: `"${data.name}" is nu geactiveerd voor je tenant en kan gebruikt worden om content te vertalen.`,
 		},
 		error: {
 			title: 'Activatie mislukt',
