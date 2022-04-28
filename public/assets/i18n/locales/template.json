@@ -1,3 +1,4 @@
 {
-  "LANGUAGES_TITLE": "Talen"
+  "LANGUAGES_TITLE": "Talen",
+  "LANGUAGES_DELETE_DESCRIPTION": "Er zijn binnen deze tenant geen sites die deze taal gebruiken. Als je deze taal deactiveert kan deze niet meer geactiveerd worden op een site."
 }
