@@ -1,6 +1,8 @@
 import Core from '@redactie/redactie-core';
 import { TranslateFunc, TranslationsAPI } from '@redactie/translations-module';
 
+import { CONFIG } from '../language.const';
+
 class TranslationsConnector {
 	static apiName = 'translations-module';
 
@@ -25,6 +27,12 @@ class TranslationsConnector {
 	public useCoreTranslation(): [TranslateFunc] {
 		return this.core?.useTranslation
 			? this.core.useTranslation('nl_BE')
+			: [() => 'TRANSLATIONS MODULE ERROR'];
+	}
+
+	public useModuleTranslation(): [TranslateFunc] {
+		return this.modules?.useTranslation
+			? this.modules.useTranslation(CONFIG.name, 'nl_BE')
 			: [() => 'TRANSLATIONS MODULE ERROR'];
 	}
 }
