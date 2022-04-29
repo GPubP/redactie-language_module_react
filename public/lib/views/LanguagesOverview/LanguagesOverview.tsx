@@ -45,6 +45,7 @@ const LanguagesOverview: FC = () => {
 		isLanguageActivating,
 		languages,
 	] = useLanguages();
+	const [tModule] = translationsConnector.useModuleTranslation();
 	const [t] = translationsConnector.useCoreTranslation();
 
 	useEffect(() => {
@@ -154,7 +155,7 @@ const LanguagesOverview: FC = () => {
 				</div>
 
 				<DeletePrompt
-					body={MODULE_TRANSLATIONS.LANGUAGES_DELETE_DESCRIPTION}
+					body={tModule(MODULE_TRANSLATIONS.LANGUAGES_DELETE_DESCRIPTION)}
 					title="Bevestigen"
 					isDeleting={!!languageIdDeactivating}
 					show={showDeactivateModal}
