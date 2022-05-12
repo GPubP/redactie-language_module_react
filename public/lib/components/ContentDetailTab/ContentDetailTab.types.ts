@@ -7,6 +7,7 @@ export interface TranslationTableRow {
 	viewPath?: string;
 	editPath?: string;
 	createPath?: string;
+	setBaseContentItem?: () => void;
 }
 
 export enum ContentSystemNames {

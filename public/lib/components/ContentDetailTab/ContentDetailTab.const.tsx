@@ -8,7 +8,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { CORE_TRANSLATIONS } from '../../connectors/translations';
-import { contentCreate, contentEdit, DATE_FORMATS } from '../../language.const';
+import { DATE_FORMATS } from '../../language.const';
 
 import { TranslationTableRow } from './ContentDetailTab.types';
 
@@ -67,7 +67,7 @@ export const TRANSLATIONS_COLUMNS = (t: TranslateFunc): TableColumn<TranslationT
 			classList: ['u-text-right'],
 			disableSorting: true,
 			width: '15%',
-			component(value, { title, editPath, createPath }) {
+			component(value, { title, editPath, createPath, setBaseContentItem }) {
 				return (
 					<>
 						{title ? (
@@ -80,7 +80,12 @@ export const TRANSLATIONS_COLUMNS = (t: TranslateFunc): TableColumn<TranslationT
 								<Icon name="edit"></Icon>
 							</AUILink>
 						) : (
-							<AUILink to={createPath} className="a-button-outline" component={Link}>
+							<AUILink
+								to={createPath}
+								className="a-button-outline"
+								component={Link}
+								onClick={setBaseContentItem}
+							>
 								Nieuw aanmaken
 							</AUILink>
 						)}
