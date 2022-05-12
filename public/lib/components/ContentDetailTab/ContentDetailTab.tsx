@@ -101,8 +101,12 @@ const ContentDetailTab: FC<ExternalTabProps> = ({ siteId, contentType, contentIt
 						defaultNavigateParameters,
 						new URLSearchParams({
 							translationId: contentItem.meta.translationId,
+							baseContentItemId: contentItem.uuid || '',
 						})
 					),
+					setBaseContentItem: () => {
+						contentConnector.setBaseContentItem(contentItem);
+					},
 				};
 			}),
 		// eslint-disable-next-line react-hooks/exhaustive-deps
