@@ -33,9 +33,8 @@ class ContentConnector {
 	public getContent = (siteId: string, searchParams: SearchParams): Promise<void> | false =>
 		this.api ? this.api.store.content.facade.getContent(siteId, searchParams) : false;
 
-	public setBaseContentItem = (contentItem: ContentModel): Promise<void> | false =>
-		// TODO: fix types
-		this.api ? (this.api.store.content.facade as any).setBaseContentItem(contentItem) : false;
+	public setBaseContentItem = (contentItem: ContentModel): void | false =>
+		this.api ? this.api.store.content.facade.setBaseContentItem(contentItem) : false;
 
 	public get contentService(): ContentAPI['store']['content']['service'] {
 		return this.api.store.content.service;
