@@ -13,34 +13,18 @@
 
 ### hooks
 
-• **hooks**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `useActiveLanguages` | () => [`LoadingState`, `undefined` \| ``null`` \| [`LanguageSchema`](../wiki/index.LanguageSchema)[]] |
-| `useActiveLanguagesForSite` | (`siteId`: `string`) => [`LoadingState`, `undefined` \| ``null`` \| [`LanguageSchema`](../wiki/index.LanguageSchema)[]] |
-| `useLanguages` | () => [`LoadingState`, `undefined` \| `string`, `boolean`, `undefined` \| ``null`` \| [`LanguageSchema`](../wiki/index.LanguageSchema)[]] |
+• **hooks**: [`LanguagesModuleHooksAPI`](../wiki/index.LanguagesModuleHooksAPI)
 
 #### Defined in
 
-public/lib/language.types.ts:19
+public/lib/api/api.types.ts:20
 
 ___
 
 ### store
 
-• **store**: `Object`
-
-#### Type declaration
-
-| Name | Type |
-| :------ | :------ |
-| `languages` | { `facade`: `Pick`<`LanguagesFacade`, ``"getLanguages"`` \| ``"getActiveLanguages"``\> ; `service`: `LanguagesApiService`  } |
-| `languages.facade` | `Pick`<`LanguagesFacade`, ``"getLanguages"`` \| ``"getActiveLanguages"``\> |
-| `languages.service` | `LanguagesApiService` |
+• **store**: [`LanguagesModuleStoreAPI`](../wiki/index.LanguagesModuleStoreAPI)
 
 #### Defined in
 
-public/lib/language.types.ts:13
+public/lib/api/api.types.ts:19

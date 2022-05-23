@@ -1,7 +1,8 @@
 import { useActiveLanguages, useActiveLanguagesForSite, useLanguages } from '../hooks';
-import { LanguagesModuleAPI } from '../language.types';
 
-export const hooks: LanguagesModuleAPI['hooks'] = {
+import { LanguagesModuleHooksAPI } from './api.types';
+
+export const hooks: LanguagesModuleHooksAPI = {
 	useLanguages,
 	useActiveLanguages,
 	useActiveLanguagesForSite,

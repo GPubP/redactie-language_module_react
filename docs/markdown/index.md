@@ -6,6 +6,8 @@
 
 - [LanguageSchema](../wiki/index.LanguageSchema)
 - [LanguagesModuleAPI](../wiki/index.LanguagesModuleAPI)
+- [LanguagesModuleHooksAPI](../wiki/index.LanguagesModuleHooksAPI)
+- [LanguagesModuleStoreAPI](../wiki/index.LanguagesModuleStoreAPI)
 - [LanguagesState](../wiki/index.LanguagesState)
 
 ### Type aliases
