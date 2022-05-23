@@ -11,18 +11,18 @@
 
 ### hooks
 
-• `Const` **hooks**: [`LanguagesModuleAPI`](../wiki/index.LanguagesModuleAPI)[``"hooks"``]
+• `Const` **hooks**: [`LanguagesModuleHooksAPI`](../wiki/index.LanguagesModuleHooksAPI)
 
 #### Defined in
 
-public/lib/api/hooks.ts:4
+public/lib/api/hooks.ts:5
 
 ___
 
 ### store
 
-• `Const` **store**: [`LanguagesModuleAPI`](../wiki/index.LanguagesModuleAPI)[``"store"``]
+• `Const` **store**: [`LanguagesModuleStoreAPI`](../wiki/index.LanguagesModuleStoreAPI)
 
 #### Defined in
 
-public/lib/api/store.ts:5
+public/lib/api/store.ts:6
