@@ -4,8 +4,8 @@
 
 ### Variables
 
-- [hooks](../wiki/Module%20API#hooks-1)
-- [store](../wiki/Module%20API#store-1)
+- [hooks](../wiki/Module%20API#hooks)
+- [store](../wiki/Module%20API#store)
 
 ## Variables
 

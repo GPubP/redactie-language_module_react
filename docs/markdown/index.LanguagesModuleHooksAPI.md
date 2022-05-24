@@ -6,9 +6,9 @@
 
 ### Properties
 
-- [useActiveLanguages](../wiki/index.LanguagesModuleHooksAPI#useactivelanguages-1)
-- [useActiveLanguagesForSite](../wiki/index.LanguagesModuleHooksAPI#useactivelanguagesforsite-1)
-- [useLanguages](../wiki/index.LanguagesModuleHooksAPI#uselanguages-1)
+- [useActiveLanguages](../wiki/index.LanguagesModuleHooksAPI#useactivelanguages)
+- [useActiveLanguagesForSite](../wiki/index.LanguagesModuleHooksAPI#useactivelanguagesforsite)
+- [useLanguages](../wiki/index.LanguagesModuleHooksAPI#uselanguages)
 
 ## Properties
 
