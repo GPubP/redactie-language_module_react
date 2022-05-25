@@ -2,6 +2,10 @@
 
 ## Table of contents
 
+### Namespaces
+
+- [&lt;internal\&gt;](../wiki/index.%3Cinternal%3E)
+
 ### Interfaces
 
 - [LanguageSchema](../wiki/index.LanguageSchema)
@@ -12,8 +16,8 @@
 
 ### Type aliases
 
-- [LanguageModel](../wiki/index#languagemodel-1)
-- [LanguagesSchema](../wiki/index#languagesschema-1)
+- [LanguageModel](../wiki/index#languagemodel)
+- [LanguagesSchema](../wiki/index#languagesschema)
 
 ## Type aliases
 

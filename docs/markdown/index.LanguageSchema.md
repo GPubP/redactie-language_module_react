@@ -6,14 +6,14 @@
 
 ### Properties
 
-- [\_id](../wiki/index.LanguageSchema#_id-1)
-- [active](../wiki/index.LanguageSchema#active-1)
-- [key](../wiki/index.LanguageSchema#key-1)
-- [localizedName](../wiki/index.LanguageSchema#localizedname-1)
-- [name](../wiki/index.LanguageSchema#name-1)
-- [primary](../wiki/index.LanguageSchema#primary-1)
-- [sites](../wiki/index.LanguageSchema#sites-1)
-- [uuid](../wiki/index.LanguageSchema#uuid-1)
+- [\_id](../wiki/index.LanguageSchema#_id)
+- [active](../wiki/index.LanguageSchema#active)
+- [key](../wiki/index.LanguageSchema#key)
+- [localizedName](../wiki/index.LanguageSchema#localizedname)
+- [name](../wiki/index.LanguageSchema#name)
+- [primary](../wiki/index.LanguageSchema#primary)
+- [sites](../wiki/index.LanguageSchema#sites)
+- [uuid](../wiki/index.LanguageSchema#uuid)
 
 ## Properties
 
@@ -79,7 +79,7 @@ ___
 
 ### sites
 
-• `Optional` **sites**: `SiteDetailModel`[]
+• `Optional` **sites**: [`SiteDetailModel`](../wiki/index.%3Cinternal%3E.SiteDetailModel)[]
 
 #### Defined in
 

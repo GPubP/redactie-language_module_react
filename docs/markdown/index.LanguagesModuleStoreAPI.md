@@ -6,7 +6,7 @@
 
 ### Properties
 
-- [languages](../wiki/index.LanguagesModuleStoreAPI#languages-1)
+- [languages](../wiki/index.LanguagesModuleStoreAPI#languages)
 
 ## Properties
 
@@ -18,8 +18,8 @@
 
 | Name | Type |
 | :------ | :------ |
-| `facade` | `Pick`<`LanguagesFacade`, ``"getLanguages"`` \| ``"getActiveLanguages"``\> |
-| `service` | `LanguagesApiService` |
+| `facade` | `Pick`<[`LanguagesFacade`](../wiki/index.%3Cinternal%3E.LanguagesFacade), ``"getLanguages"`` \| ``"getActiveLanguages"``\> |
+| `service` | [`LanguagesApiService`](../wiki/index.%3Cinternal%3E.LanguagesApiService) |
 
 #### Defined in
 

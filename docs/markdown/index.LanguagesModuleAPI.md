@@ -6,8 +6,8 @@
 
 ### Properties
 
-- [hooks](../wiki/index.LanguagesModuleAPI#hooks-1)
-- [store](../wiki/index.LanguagesModuleAPI#store-1)
+- [hooks](../wiki/index.LanguagesModuleAPI#hooks)
+- [store](../wiki/index.LanguagesModuleAPI#store)
 
 ## Properties
 
